@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "RASTRO-CATASTRO v0.2.1",
+  "version": "0.2.1",
+  "description": "Consulta local de datos catastrales públicos por referencia, dirección, coordenadas y parcela rústica.",
+  "host_permissions": [
+    "https://ovc.catastro.meh.es/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Abrir RASTRO-CATASTRO",
+    "default_icon": {
+      "16": "rastro-icon-16.png",
+      "32": "rastro-icon-32.png",
+      "48": "rastro-icon-48.png",
+      "128": "rastro-icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "rastro-icon-16.png",
+    "32": "rastro-icon-32.png",
+    "48": "rastro-icon-48.png",
+    "128": "rastro-icon-128.png"
+  }
+}
