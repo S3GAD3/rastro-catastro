@@ -27,16 +27,6 @@ La información disponible depende de la respuesta de los servicios de la DGC. L
 
 Los nombres de las vías se presentan con el código oficial de tipo. Por ejemplo, **LG** corresponde a *Lugar*, **PL** a *Polígono* y **PZ** a *Plaza*.
 
-## Publicación en GitHub Pages
-
-Para publicar esta versión como página estática:
-
-1. Crea un repositorio de GitHub llamado `rastro-catastro`.
-2. Copia el HTML autónomo de la herramienta en la raíz del repositorio y llámalo `index.html`.
-3. Añade este archivo como `README.md` y copia también el archivo `LICENSE` del proyecto.
-4. En **Settings → Pages**, configura la publicación desde la rama `main` y la carpeta `/ (root)`.
-5. Cuando GitHub Pages termine el despliegue, la página estará disponible en `https://s3gad3.github.io/rastro-catastro/`.
-
 El HTML autónomo contiene los estilos, el código de la aplicación, el logotipo y el favicon. Para que las consultas funcionen, el navegador debe tener JavaScript habilitado y acceso a Internet. La disponibilidad también depende del servicio de Catastro, la red y las políticas de seguridad del navegador.
 
 ## Privacidad y flujo de datos
