@@ -1,53 +1,68 @@
-# RASTRO-CATASTRO v0.2.1
+# RASTRO-CATASTRO
 
-Herramienta local para consultar y organizar datos catastrales **no protegidos** de un inmueble mediante los servicios públicos de la Dirección General del Catastro (DGC). RASTRO es un cliente independiente: no es un servicio oficial ni está afiliado, patrocinado o respaldado por la DGC.
+Herramienta web de consulta y organización de información catastral pública no protegida. RASTRO-CATASTRO permite buscar inmuebles a través de los servicios públicos de la Dirección General del Catastro (DGC) y consultar la ficha oficial correspondiente.
 
-## Qué incluye
+**Acceso a la herramienta:** [https://s3gad3.github.io/rastro-catastro/](https://s3gad3.github.io/rastro-catastro/)
 
-- Búsqueda por referencia catastral (14, 18 o 20 caracteres).
-- Búsqueda por dirección urbana, con sugerencias oficiales de provincias, municipios, vías y números.
-- Consulta por coordenadas geográficas WGS84 / EPSG:4326.
-- Búsqueda de parcela rústica por referencia o por provincia, municipio, polígono y parcela.
-- Ficha estructurada con los campos no protegidos que devuelva el servicio, como localización, uso, superficies, antigüedad, unidades constructivas y subparcelas.
-- Enlaces directos a la ficha y cartografía de la Sede Electrónica del Catastro.
-- Copia de resumen, impresión/guardar PDF y exportación voluntaria de un JSON local con fecha, consulta y atribución de la fuente.
+RASTRO-CATASTRO es un proyecto independiente. No es un servicio oficial ni está afiliado, patrocinado o respaldado por la Dirección General del Catastro.
 
-Las sugerencias se solicitan después de que el usuario escriba en los campos de dirección. Para una consulta completa, el investigador debe pulsar el botón de búsqueda.
+## Funciones
 
-## Instalación en Chrome o Edge
+- Búsqueda por referencia catastral de 14, 18 o 20 caracteres.
+- Búsqueda por dirección urbana, con sugerencias de provincia, municipio, vía y número procedentes del callejero catastral.
+- Búsqueda por coordenadas geográficas WGS84 (EPSG:4326).
+- Búsqueda de parcelas rústicas por referencia catastral o por provincia, municipio, polígono y parcela.
+- Ficha organizada con la información no protegida que responda el servicio, por ejemplo localización, uso, superficies, antigüedad, unidades constructivas y subparcelas.
+- Acceso a la ficha y cartografía oficiales, impresión o guardado en PDF, copia de resumen y exportación voluntaria a JSON.
 
-1. Descarga y descomprime el paquete de esta versión.
-2. Abre `chrome://extensions` en Chrome o `edge://extensions` en Edge.
-3. Activa **Modo de desarrollador**.
-4. Pulsa **Cargar descomprimida** y selecciona la carpeta `RASTRO-CATASTRO-v0.2.1` (la que contiene `manifest.json`).
-5. Abre RASTRO-CATASTRO desde el icono de la extensión.
+La información disponible depende de la respuesta de los servicios de la DGC. La herramienta no obtiene datos protegidos de titulares ni valores catastrales individualizados.
 
-No abras `index.html` con doble clic: la consulta requiere el contexto de la extensión. El permiso de red está limitado al dominio del servicio público de Catastro indicado en `manifest.json`.
+## Uso
+
+1. Abre la [herramienta web](https://s3gad3.github.io/rastro-catastro/) con conexión a Internet.
+2. Selecciona el tipo de búsqueda: referencia, dirección, coordenadas o parcela rústica.
+3. Para buscar por dirección, escribe el comienzo de la provincia y selecciona una sugerencia. Repite el proceso con el municipio y la vía; después introduce el número. Elegir las sugerencias permite enviar al servicio los nombres completos reconocidos por Catastro. Si no aparecen sugerencias, comprueba la conexión o prueba la opción de texto manual.
+4. Pulsa el botón de consulta. Revisa los resultados y contrástalos en la ficha oficial enlazada.
+5. Usa **Limpiar ficha** al terminar. La exportación JSON y la impresión se generan solo cuando el usuario las solicita.
+
+Los nombres de las vías se presentan con el código oficial de tipo. Por ejemplo, **LG** corresponde a *Lugar*, **PL** a *Polígono* y **PZ** a *Plaza*.
+
+## Publicación en GitHub Pages
+
+Para publicar esta versión como página estática:
+
+1. Crea un repositorio de GitHub llamado `rastro-catastro`.
+2. Copia el HTML autónomo de la herramienta en la raíz del repositorio y llámalo `index.html`.
+3. Añade este archivo como `README.md` y copia también el archivo `LICENSE` del proyecto.
+4. En **Settings → Pages**, configura la publicación desde la rama `main` y la carpeta `/ (root)`.
+5. Cuando GitHub Pages termine el despliegue, la página estará disponible en `https://s3gad3.github.io/rastro-catastro/`.
+
+El HTML autónomo contiene los estilos, el código de la aplicación, el logotipo y el favicon. Para que las consultas funcionen, el navegador debe tener JavaScript habilitado y acceso a Internet. La disponibilidad también depende del servicio de Catastro, la red y las políticas de seguridad del navegador.
 
 ## Privacidad y flujo de datos
 
-- La extensión no tiene servidor propio, cuenta, telemetría, analítica ni almacenamiento remoto.
-- Las consultas y sugerencias se envían directamente desde el navegador a los servicios de la DGC. El texto de provincia, municipio, vía, número, referencia o coordenadas que se use en la consulta se transmite a ese servicio.
-- Los resultados permanecen en memoria en la pestaña abierta. No se guardan automáticamente. Imprimir, copiar o exportar crea una salida local solo si el usuario pulsa la acción correspondiente. El enlace opcional «Contrastar en mapa» envía la dirección a Google Maps únicamente cuando se pulsa.
-- El JSON exportado puede incluir referencias, direcciones y otros datos del inmueble. Guárdalo en el expediente y sistema autorizados; no lo subas al repositorio público.
-- La extensión no solicita ni obtiene nombres de titulares, NIF, domicilio de titulares ni valores catastrales individualizados.
+- La aplicación no tiene servidor propio, cuenta de usuario, analítica ni almacenamiento remoto de consultas.
+- Las sugerencias se solicitan a la DGC mientras se escriben los campos de dirección. La búsqueda principal se envía cuando se pulsa el botón de consulta. La referencia, dirección, número o coordenadas introducidos se transmiten directamente desde el navegador a los servicios de Catastro; no pasan por un servidor de RASTRO.
+- Los resultados permanecen en la memoria de la pestaña abierta y no se guardan automáticamente. Exportar, imprimir o copiar requiere pulsar la acción correspondiente.
+- El botón opcional para contrastar una dirección en Google Maps envía esa dirección a Google únicamente cuando se pulsa.
+- La web estática se distribuye a través de GitHub Pages, que puede procesar datos técnicos de acceso conforme a sus propias condiciones y políticas.
+- Un JSON exportado puede contener referencias, direcciones y otros datos del inmueble. Guárdalo únicamente en sistemas autorizados y no lo subas al repositorio público.
 
-## Condiciones de uso de la información catastral
+## Fuentes catastrales y condiciones de uso
 
-La licencia MIT de este repositorio cubre exclusivamente el software y los recursos originales de RASTRO identificados en este proyecto. **No concede derechos sobre datos, cartografía, servicios, marcas o contenidos de terceros**, ni sustituye las condiciones publicadas por la DGC.
+La licencia MIT de este repositorio cubre únicamente el software y los materiales originales de RASTRO incluidos en él. **No concede derechos sobre datos, cartografía, servicios, marcas ni contenidos de terceros**, y no sustituye las condiciones establecidas por sus titulares.
 
-La DGC ofrece servicios web de consulta de datos no protegidos para automatizar consultas, pero indica que no están destinados al barrido sistemático de la base de datos. La licencia oficial de acceso/descarga establece condiciones para el uso y la difusión: entre ellas, restringe publicar en Internet información catastral original sin transformar, exige atribuir la fuente y la fecha en productos transformados, y contempla la difusión mediante interoperabilidad enlazando a la Sede. La herramienta no incluye una base de datos, no ejecuta búsquedas masivas y enlaza a la ficha oficial; aun así, **este proyecto no declara que el formato de su ficha o de sus exportaciones constituya por sí mismo una transformación autorizada**.
+La DGC ofrece servicios web libres para consultar información no protegida. Sus condiciones y documentación delimitan el uso de esos servicios y de la información resultante; no deben emplearse para barrer sistemáticamente la base de datos. La publicación de esta interfaz no autoriza a republicar, redistribuir o explotar resultados catastrales. Antes de conservar, transformar, compartir o publicar datos, informes, JSON o capturas, revisa las condiciones oficiales vigentes y obtiene las autorizaciones que correspondan.
 
-Por ello, esta versión se distribuye como código/extensión para uso local y no se publica como aplicación alojada que redistribuya resultados. No publiques datos consultados, informes o capturas con datos catastrales sin revisar las condiciones vigentes de la DGC y, cuando proceda, obtener la autorización necesaria. Las condiciones pueden cambiar: consulta siempre las fuentes oficiales enlazadas abajo.
+La herramienta realiza consultas puntuales, no incorpora una base de datos catastral y no está diseñada para búsquedas masivas. Este proyecto no afirma que la presentación o exportación de los resultados constituya por sí misma una transformación autorizada por la DGC.
 
-## Límites y advertencias
+## Límites
 
-- La herramienta está limitada a datos catastrales no protegidos. El acceso a datos protegidos está sujeto a los supuestos y requisitos legales correspondientes.
+- Una respuesta vacía, un error o una dirección no encontrada no demuestra que el inmueble no exista.
 - La información catastral no acredita por sí sola propiedad, ocupación, posesión, estado físico ni situación registral del inmueble.
-- RASTRO-CATASTRO no expide certificaciones ni sustituye la Sede Electrónica, al Registro de la Propiedad ni a una comprobación oficial.
-- Un error, una respuesta vacía o una dirección no encontrada no demuestra que el inmueble no exista. Contrasta el resultado con la ficha oficial.
-- Los servicios estatales del Catastro no cubren Navarra ni los territorios forales del País Vasco.
-- Para usos profesionales o de investigación, el usuario debe contar con habilitación, finalidad y base jurídica aplicables, respetar necesidad y proporcionalidad, y seguir los procedimientos de su organización.
+- RASTRO-CATASTRO no emite certificaciones y no sustituye a la Sede Electrónica del Catastro, al Registro de la Propiedad ni a otras fuentes competentes.
+- Los servicios estatales de la DGC no cubren Navarra ni los territorios forales del País Vasco.
+- El usuario es responsable de contar con la finalidad, habilitación y base jurídica aplicables y de seguir los procedimientos de su organización.
 
 ## Fuentes oficiales
 
@@ -58,18 +73,12 @@ Por ello, esta versión se distribuye como código/extensión para uso local y n
 - [Acceso a la información catastral](https://www.catastro.hacienda.gob.es/es-ES/acceso_infocat.html)
 - [Texto refundido de la Ley del Catastro Inmobiliario (BOE)](https://www.boe.es/buscar/act.php?id=BOE-A-2004-4163)
 
-En pantalla e informes se atribuye la fuente como **Dirección General del Catastro**, con la fecha de consulta cuando está disponible.
-
 ## Licencia
 
-El software original de este repositorio se ofrece bajo MIT. Consulta `LICENSE` para el alcance de la concesión y las exclusiones relativas a datos/servicios externos.
+El software original de este proyecto se distribuye bajo la licencia MIT. Consulta [`LICENSE`](LICENSE) para conocer su alcance y las exclusiones relativas a información y servicios de terceros.
 
 ## Aviso
 
-Este README y la interfaz son avisos informativos, no una autorización de la DGC ni asesoramiento jurídico. La inclusión de un disclaimer no subsana un uso que infrinja la normativa o licencia aplicable. Verifica las condiciones oficiales antes de publicar o redistribuir cualquier resultado.
+Este README y los avisos de la interfaz son informativos. No constituyen asesoramiento jurídico, autorización de la DGC ni garantía de que una modalidad concreta de uso o difusión esté permitida. Comprueba las condiciones oficiales antes de reutilizar información catastral.
 
 **Creado por S3GAD3 · Kit RASTRO**
-
-### Versión 0.2.1
-
-El autocompletado de provincia, municipio y calle usa ahora menús de sugerencias visibles conectados al callejero oficial. Selecciona la sugerencia para que la siguiente consulta utilice el nombre completo reconocido por Catastro. Se amplió el catálogo de tipos de vía, incluidos LG (Lugar), PL (Polígono) y PZ (Plaza).
